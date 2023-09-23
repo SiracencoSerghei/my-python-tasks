@@ -7,7 +7,7 @@ def is_spam_words(text, spam_words, space_around=False):
     print(f'space_around: {space_around}')
     print(f'text: {text}')
     
-    words = text.split()
+   
     
     for word in spam_words:
         if space_around:
