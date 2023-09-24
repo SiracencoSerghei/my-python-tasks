@@ -17,12 +17,12 @@ import re
 
 def find_all_links(text):
     result = []
-    iterator = re.finditer(r"https?://(([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,3})", text)
+    iterator = re.finditer(r"https?://[www.]?\w+(\w.)+\w+\.[a-zA-Z]{2,3}", text)
     for match in iterator:
         result.append(match.group())
     return result
 
 # Приклад використання:
-text = "  https://www.google..com   The main search site in the world is https://www.google.com The main social network for people in the world is https://www.facebook.com But programmers have their own social network http://github.com There they share their code. some url to check https://www..facebook.com www.facebook.com"
+text = "  https://www..go.ogle..com   The main search site in the world is https://www.google.com The main social network for people in the world is https://www.facebook.com But programmers have their own social network http://github.com There they share their code. some url to check https://www..facebook.com www.facebook.com"
 links = find_all_links(text)
 print(links)
