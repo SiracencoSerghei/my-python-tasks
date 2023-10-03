@@ -4,6 +4,7 @@ Return your answer as a number."""
 
 def sum_mix(arr):
     return sum(map(int, arr))
+    # return sum(int(i) for i in arr)
 
 
 arr1 = ['80', '33', '-14',  34, 29, -29, ]
