@@ -1,13 +1,13 @@
 def is_spam_words(text, spam_words, space_around=False):
     text = text.lower()
-    
+    # убрал всі знакі препінанія(по тз тількі крапка)
     punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
     
     text = ''.join(char for char in text if char not in punctuation)
     print(f'space_around: {space_around}')
     print(f'text: {text}')
     
-   
+    words = text.split()
     
     for word in spam_words:
         if space_around:

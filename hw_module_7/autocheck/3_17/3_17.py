@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # Структура словника для entry_points
     entry_points = {
         'console_scripts': [
-            'script_name = module_name:setup',  # Додайте свої точки входу тут
+            'script_name = module_name:setup',  # Додати свої точки входу тут
         ],
     }
     # package requirements:
