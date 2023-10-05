@@ -14,13 +14,30 @@ def capital_text(text):
         return text
     # Зробимо великою першу літеру в рядку а останні маленькімі...
     text = text.lower().capitalize()
-    is_next_word_capitalize = False
-    for ch in text:
-        print(ch)
-        
-    
-    
-    
+    # задаємо початковий стан для слова, що має пунктуацію
+    is__word_with_punctuation = False
+    # Ініціалізація пустого рядка для результату
+    result = ""
+    # Перетворення рядка на список слів
+    words = text.split()
+    for i, word in enumerate(words):
+        # Знаки пунктуації, які потрібно перевіряти
+        punctuation = ".!?"
+        # Якщо слово було з пунктуаціею, зробимо першу літеру велікою
+        if  is__word_with_punctuation:
+            word = word.capitalize()
+            is__word_with_punctuation = False
+        # Якщо слово містить знак пунктуації, міняемо його стан.
+        if word[-1] in punctuation:
+            is__word_with_punctuation = True
+        # Додаємо слово до результату зі знаком пунктуації (якщо він є)
+        result += word
+        # Додаємо пробіл, якщо це не останнє слово
+        if i < (len(words) - 1):
+            result += " "
+
+    return result
+
 # Приклад використання:
 text = "hello. how are you! i'm fine, thank you?"
 capitalized_text = capital_text(text)
