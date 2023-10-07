@@ -74,9 +74,11 @@ def find_articles(key, letter_case=False):
         title = article['title']
         year = article['year']
         
+    # author = article['author'], title = article['title'], year = article['year'] in article for article in articles_dict:
+        
         # print(title.lower().find(key) | author.lower().find(key))
         
-        if letter_case:
+        if letter_case: 
             if title.find(key) != -1 or author.find(key) != -1:
                 result = {
                 'author': author,
@@ -84,7 +86,7 @@ def find_articles(key, letter_case=False):
                 'year': year
                 }
                 results.append(result)
-        else:
+        else: # PythOn pyTHon == True
             if title.lower().find(key.lower()) != -1 or author.lower().find(key.lower()) != -1:
                 result = {
                     'author': author,

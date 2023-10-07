@@ -29,3 +29,6 @@ if __name__ == "__main__":
         INPUT_FOLDER = sys.argv[1]
         sort_folder(INPUT_FOLDER)
     print("Script is done")
+
+
+# python3 sort_dir.py ~/Desktop/мотлох
