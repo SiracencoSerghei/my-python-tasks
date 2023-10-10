@@ -12,21 +12,29 @@ from decimal import Decimal, getcontext
 
 
 def decimal_average(number_list, signs_count):
+    context = getcontext()
+    context.prec = signs_count
+    
     def sum_numbers(numbers):
         if len(numbers) == 0:
-            return 0
-        return numbers[0] + sum_numbers(numbers[1:])
+            return Decimal(0)
+        return Decimal(numbers[0]) + sum_numbers(numbers[1:])
 
     sum_num_list = sum_numbers(number_list)
+    print(f'sum: {sum_num_list}')
     
-    context = getcontext()
-    context.prec = signs_count -1
+    
    
-    average = Decimal(sum_num_list) /Decimal((len(number_list)))
-    average = Decimal(average)
+    average = Decimal(sum_num_list) / Decimal((len(number_list)))
+    
     print(average)
     return average
 
+   
     
 decimal_average([3, 5, 77, 23, 0.57], 6)
 decimal_average([31, 55, 177, 2300, 1.57], 9)
+
+
+# виклик функції decimal_average([3, 5, 77, 23, 0.57], 6) поверне 21.714
+# виклик функції decimal_average([31, 55, 177, 2300, 1.57], 9) поверне 512.91400
