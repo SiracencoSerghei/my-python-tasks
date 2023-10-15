@@ -29,7 +29,7 @@
 #     print("Invalid input!")
     
 # ==================================
-# def unic_elem(elem_list):
+# def uniq_elem(elem_list):
 #     res_list = []
 #     for el in elem_list:
 #         count_el = elem_list.count(el)
@@ -39,7 +39,7 @@
 #             res_list.append(el)
 #     print(res_list)
     
-# unic_elem([1,1,2,3, 4, 5,5])
+# uniq_elem([1,1,2,3, 4, 5,5])
 
 # ===============================
 
