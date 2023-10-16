@@ -11,17 +11,24 @@
 Функція all_sub_lists повинна повертати щонайменше один список з порожнім підсписком [[]]."""
 
 
+# def all_sub_lists(data):
+#     sub_lists = [[]]
+#     for i in range(len(data)):
+#         for j in range(i + 1, len(data) + 1):
+#             sub_list = data[i:j]
+#             print(sub_list)
+#             sub_lists.append(sub_list)
+#     sub_lists.sort(key=len)
+#     return sub_lists
+
 def all_sub_lists(data):
-    sub_lists = [[]]
-    for i in range(len(data)):
-        for j in range(i + 1, len(data) + 1):
-            sub_list = data[i:j]
-            print(sub_list)
-            sub_lists.append(sub_list)
-    sub_lists.sort(key=len)
-    return sub_lists
+    if len(data) == 0:
+        return [[]]
+    extended_sub_lists = [([data[0]] + sub_list) for sub_list in all_sub_lists(data[1:])] + all_sub_lists(data[1:])
+    extended_sub_lists.sort(key=len)
+    return extended_sub_lists
 
-
+    
 
 
 # Приклад використання:
