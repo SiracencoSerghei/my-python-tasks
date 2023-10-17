@@ -22,11 +22,19 @@
 #     return sub_lists
 
 def all_sub_lists(data):
-    if len(data) == 0:
-        return [[]]
-    extended_sub_lists = [([data[0]] + sub_list) for sub_list in all_sub_lists(data[1:])] + all_sub_lists(data[1:])
-    extended_sub_lists.sort(key=len)
-    return extended_sub_lists
+    sub_lists = [[]]
+    for i in range(1, len(data) + 1):
+        for j in range(len(data) - i + 1):
+            sub_lists.append(data[j:j + i])           
+    
+    return sub_lists
+
+# def all_sub_lists(data):
+#     if len(data) == 0:
+#         return [[]]
+#     extended_sub_lists = [([data[0]] + sub_list) for sub_list in all_sub_lists(data[1:])] + all_sub_lists(data[1:])
+#     extended_sub_lists.sort(key=len)
+#     return extended_sub_lists
 
     
 
