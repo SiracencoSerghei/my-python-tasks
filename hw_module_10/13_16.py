@@ -21,4 +21,14 @@ class Cat(Animal):
         return "Meow"
 
 
-class CatDog:
+# Inherit from Cat, so CatDog behaves like a Cat
+class CatDog(Cat):
+    def __init__(self, nickname, weight):
+        # Call the Cat constructor
+        super().__init__(nickname, weight)
+
+
+# Example usage:
+cat_dog = CatDog("Fluffy", 5)
+print(cat_dog.say())  # Outputs: Meow
+print(cat_dog.nickname) # Outputs: Fluffy
