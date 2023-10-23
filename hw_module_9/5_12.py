@@ -45,3 +45,10 @@ def sanitize_phone_number(phone):
             .replace(" ", "")
     )
     return new_phone
+
+
+normalized_phone = sanitize_phone_number("0503451234")
+print(normalized_phone)  # Output: +380503451234
+
+normalized_phone = sanitize_phone_number("380501112211")
+print(normalized_phone)  # Output: +380501112211
