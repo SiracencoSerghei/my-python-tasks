@@ -71,15 +71,35 @@ class Vector:
             self.coordinates.y = self.coordinates.y * value
         return self.coordinates.x, self.coordinates.y
 
-    def __add__(self, vector):
-        
-        
-        
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            new_x = self.coordinates.x + other.coordinates.x
+            new_y = self.coordinates.y + other.coordinates.y
+            return Vector(Point(new_x, new_y))
+        else:
+            raise ValueError("Can only add two Vector objects")
 
-    def __sub__(self, vector):
-        
-        
-        
+
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            new_x = self.coordinates.x - other.coordinates.x
+            new_y = self.coordinates.y - other.coordinates.y
+            return Vector(Point(new_x, new_y))
+        else:
+            raise ValueError("Can only subtract two Vector objects")
+   
 
     def __str__(self):
         return f"Vector({self.coordinates.x},{self.coordinates.y})"
+    
+    
+# Приклад коду:
+
+vector1 = Vector(Point(1, 10))
+vector2 = Vector(Point(10, 10))
+
+vector3 = vector2 + vector1
+vector4 = vector2 - vector1
+
+print(vector3)  # Vector(11,20)
+print(vector4)  # Vector(9,0)
