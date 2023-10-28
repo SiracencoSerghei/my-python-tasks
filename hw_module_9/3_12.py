@@ -16,37 +16,63 @@ fibonacci(n), яка безпосередньо і обчислюватиме с
 поміщаємо його в кеш, і повертаємо з функції fibonacci.
 """
 
-def caching_fibonacci():
-    """caching_fibonacci"""
-    # Створімо словник для зберігання результатів обчислення чисел Фібоначчі
-    cache = {}
+# def caching_fibonacci():
+#     """caching_fibonacci"""
+#     # Створімо словник для зберігання результатів обчислення чисел Фібоначчі
+#     cache = {}
 
-    def fibonacci(n):
-        # Перевірка, чи число Фібоначчі знаходиться в кеші
+#     def fibonacci(n):
+#         # Перевірка, чи число Фібоначчі знаходиться в кеші
+#         if n in cache:
+#             return cache[n]
+#         # Якщо число Фібоначчі не знайдено в кеші, обчислюємо його
+#         if n == 0:
+#             result = 0
+#         elif n == 1:
+#             result = 1
+#         else:
+#             result = fibonacci(n - 1) + fibonacci(n - 2)
+#         # Зберігаємо результат обчислення в кеші
+#         cache[n] = result
+        
+#         print(cache)
+#         return result
+#     return fibonacci
+
+# # Створення функції для обчислення чисел Фібоначчі з кешуванням
+# n=5
+# calculate_fib = caching_fibonacci()
+
+# # Приклад використання:
+# N = 10
+# # result1 = calculate_fib(N)
+# # print(f"Fibonacci({N}) = {result1}")
+# result2 = calculate_fib(n)
+# print(f"Fibonacci() = {result2}")
+# # End-of-file
+def cache_results(func):
+    """Декоратор для кешування результатів"""
+    cache = {}  # Словник для зберігання результатів
+
+    def wrapper(n):
         if n in cache:
             return cache[n]
-        # Якщо число Фібоначчі не знайдено в кеші, обчислюємо його
-        if n == 0:
-            result = 0
-        elif n == 1:
-            result = 1
-        else:
-            result = fibonacci(n - 1) + fibonacci(n - 2)
-        # Зберігаємо результат обчислення в кеші
+        result = func(n)
         cache[n] = result
-        
-        print(cache)
         return result
-    return fibonacci
 
-# Створення функції для обчислення чисел Фібоначчі з кешуванням
-n=5
-calculate_fib = caching_fibonacci()
+    return wrapper
 
-# Приклад використання:
-N = 10
-# result1 = calculate_fib(N)
-# print(f"Fibonacci({N}) = {result1}")
-result2 = calculate_fib(n)
-print(f"Fibonacci() = {result2}")
-# End-of-file
+@cache_results
+def fibonacci(n):
+    """Обчислення чисел Фібоначчі"""
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+n = 5
+result = fibonacci(n)
+print(f"Fibonacci({n}) = {result}")
