@@ -46,8 +46,6 @@ Vector(6,6)
 визначається параметром max_points."""
 
 from random import randrange
-
-
 class Point:
     def __init__(self, x, y):
         self.__x = None
@@ -143,23 +141,31 @@ class Vector:
 class Iterable:
     def __init__(self, max_vectors, max_points):
         self.current_index = 0
-        self.vectors = []
-        
-            
+        self.max_vectors = max_vectors
+        self.max_points = max_points
+        self.vectors = [self._generate_random_vector() for _ in range(max_vectors)]
 
     def __next__(self):
-        
-            
-            
-            
-        
-            
+        if self.current_index >= self.max_vectors:
+            raise StopIteration
+        vector = self.vectors[self.current_index]
+        self.current_index += 1
+        return vector
 
+    def _generate_random_vector(self):
+        x = randrange(0, self.max_points)  # Use randrange for x
+        y = randrange(0, self.max_points)  # Use randrange for y
+        return Vector(Point(x, y))
 
 class RandomVectors:
     def __init__(self, max_vectors=10, max_points=50):
-        
-        
+        self.max_vectors = max_vectors
+        self.max_points = max_points
 
     def __iter__(self):
-        
+        return Iterable(self.max_vectors, self.max_points)
+
+vectors = RandomVectors(5, 10)
+
+for vector in vectors:
+    print(vector)
