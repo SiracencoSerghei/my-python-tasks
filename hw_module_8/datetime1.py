@@ -42,15 +42,15 @@ print(d)
 str_d = d.strftime("%Y-%m-%d")
 print(type(str_d))
 print(str_d)
-
-d = datetime.isoformat(d)
-print(d)
-now = datetime.now()
-iso_date_time = now.isoformat()
-print(iso_date_time)
-iso_timezone = now.isoformat() + now.astimezone().strftime("%Y-%m-%d - (%z)")
-print(iso_timezone)
-
+#
+# d = datetime.isoformat(d)
+# print(d)
+# now = datetime.now()
+# iso_date_time = now.isoformat()
+# print(iso_date_time)
+# iso_timezone = now.isoformat() + now.astimezone().strftime("%Y-%m-%d - (%z)")
+# print(iso_timezone)
+#
 
 
 

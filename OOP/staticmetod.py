@@ -1,3 +1,9 @@
+class A:
+    @staticmethod
+    def method():
+        print('ASD')
+    # method = staticmethod(method)
+
 
 class Account:
     def __init__(self, owner, account_number, account_balance, max_daily_turnover=1500):
@@ -6,10 +12,12 @@ class Account:
         self.account_balance = account_balance
         self.max_daily_turnover = max_daily_turnover
         self.turnover_today = 0
+
     def money_transfer(self, destination, amount):
 
         # here the test place whether the transfer is possible
-        if amount < 0 or self.turnover_today + amount > self.max_daily_turnover or destination.turnover_today + amount > destination.max_daily_turnover:
+        if amount < 0 or (self.turnover_today + amount > self.max_daily_turnover
+                          or destination.turnover_today + amount > destination.max_daily_turnover):
             # transfer impossible
             return False
         else:
@@ -37,10 +45,13 @@ class Account:
             self.account_balance -= amount
             self.turnover_today += amount
             return True
-    def junior_account( owner, account_number, account_balance):
-        return Account(owner,account_number, account_balance, 20)
-    junior_account = staticmethod(junior_account)
 
+    # def junior_account( owner, account_number, account_balance):
+    #     return Account(owner,account_number, account_balance, 20)
+    # junior_account = staticmethod(junior_account)
+    @staticmethod
+    def junior_account(owner, account_number, account_balance):
+        return Account(owner, account_number, account_balance, 20)
 
     def show(self):
         # print(("Account of {}".format(self.owner)))
@@ -50,7 +61,8 @@ class Account:
         print(f"Current account balance: {self.account_balance:.2f} Euro")
         print(f"Today already {self.turnover_today:.2f} of {self.max_daily_turnover} Euro turned over")
 
-#======= executing  ==========
+
+# ======= executing  ==========
 
 jr = Account.junior_account("Ethan Peters", 436574, 67)
 jr.show()
@@ -58,3 +70,7 @@ jr.deposit(20)
 jr.show()
 jr.deposit(10)
 jr.show()
+
+A.method()
+a = A()
+a.method()  # TypeError: A.method() takes 0 positional arguments but 1 was given
