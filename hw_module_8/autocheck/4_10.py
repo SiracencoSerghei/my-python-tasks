@@ -14,7 +14,7 @@ from random import randrange
 
 def get_numbers_ticket(min_value, max_value, quantity):
     # Перевірка обмежень на параметри
-    if min_value < 1 or max_value > 1000 or min_value >= max_value or quantity <= min_value or quantity >= max_value:
+    if min_value < 1 or max_value > 1000 or not min_value <= quantity <= max_value:
         return []
 
     # Генеруємо список унікальних чисел у заданому діапазоні
