@@ -62,14 +62,21 @@ class Person:
         self.phone = phone
         self.favorite = favorite
 
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "email": self.email,
+            "phone": self.phone,
+            "favorite": self.favorite,
+        }
+
 
 class Contacts:
     def __init__(self, filename: str, contacts: list[Person] = None):
-        self.filename = filename
         if contacts is None:
             self.contacts = []
-        else:
-            self.contacts = contacts
+        self.filename = filename
+        self.contacts = contacts
 
     def save_to_file(self):
         with open(self.filename, "wb") as fh:
@@ -79,7 +86,11 @@ class Contacts:
 
     def read_from_file(self):
         with open(self.filename, "rb") as fh:
-            return pickle.load(fh, encoding="utf-8")
+            content = pickle.load(fh, encoding="utf-8")
+            return content
+
+
+
 
 #  ================================================
 
@@ -106,4 +117,9 @@ print(persons.contacts[0] == person_from_file.contacts[0])  # False
 print(persons.contacts[0].name == person_from_file.contacts[0].name)  # True
 print(persons.contacts[0].email == person_from_file.contacts[0].email)  # True
 print(persons.contacts[0].phone == person_from_file.contacts[0].phone)  # True
+print("======================================")
+
+for contact in persons.contacts:
+    contact_info = contact.to_dict()
+    print(contact_info)
 
