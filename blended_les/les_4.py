@@ -88,6 +88,72 @@
 # =========================================
 
 
+# class Detail:
+#     def __init__(self, name) -> None:
+#         self.name = name
+#     def __get__(self, instance, owner):
+        
+#         return self.name
+#     def __set__(self, instance, name):
+#         self.name = name
+#     def __str__(self) -> str:
+#         return f"{self.name}"
+        
+# class Motor(Detail):
+#     def __init__(self, name):
+#         super().__init__(name)
+        
+# class Wheels(Detail):
+#     def __init__(self, name):
+#         super().__init__(name)
+        
+# import traceback
+# class Auto:
+#     details = []
+        
+#     def __init__(self, def_name=None) -> None:
+#         if def_name == None:
+#             print('111 :  ', traceback.extract_stack()[-2])
+#             print('ééé: ', traceback.extract_stack())
+#             (filename,line_number,function_name,text)=traceback.extract_stack()[-2]
+#             print('text: ', text)
+#             print(filename)
+#             print(line_number)
+#             print(function_name)
+#             def_name = text[:text.find('=')].strip()
+#         self.defined_name = def_name
+        
+#     def add_detail(self, detail):
+#         self.details.append(detail)
+        
+#     def __repr__(self) -> str:
+#         return f"Auto {self.defined_name} ({str(self)})"
+
+#     def __str__(self) -> str:
+#         return ', '.join(map(str, self.details))
+
+# motor1_5 = Motor("motor 1.5")
+# koleso = Wheels("wheels 17")        
+# tavria = Auto()
+# tavria.add_detail(motor1_5)
+# tavria.add_detail(koleso)
+
+# print(tavria) # str - method
+
+# print(repr(tavria))
+
+# print(tavria.details[0])
+# print(tavria.details[1])
+
+# ======================================
+
+
+# ============================
+
+
+import inspect
+
+
 class Detail:
     def __init__(self, name) -> None:
         self.name = name
@@ -98,51 +164,52 @@ class Detail:
         self.name = name
     def __str__(self) -> str:
         return f"{self.name}"
-        
+
 class Motor(Detail):
-    def __init__(self, name):
-        super().__init__(name)
-        
+    def __init__(self, name) -> None:
+        self.name = name
+
+
 class Wheels(Detail):
-    def __init__(self, name):
-        super().__init__(name)
-        
-import traceback
+    def __init__(self, name) -> None:
+        self.name = name
+
+
 class Auto:
     details = []
-        
-    def __init__(self, def_name=None) -> None:
-        if def_name == None:
-            (_,_,_,text)=traceback.extract_stack()[-2]
-            def_name = text[:text.find('=')].strip()
-        self.defined_name = def_name
+
+    def __init__(self, instance_name=None) -> None:
+        if instance_name is None:
+            frame_info = inspect.getframeinfo(inspect.currentframe().f_back)
+            print('Caller frame info - Code-context:', frame_info.code_context)
+            text = frame_info.code_context[0]
+            print(text)
+            instance_name = text[:text.find('=')].strip()
+            print(instance_name)
+
+        self.instance_name = instance_name
         
     def add_detail(self, detail):
         self.details.append(detail)
-        
+
     def __repr__(self) -> str:
-        return f"Auto {self.defined_name} ({str(self)})"
+        return f"Auto {self.instance_name} ({str(self)})"
 
     def __str__(self) -> str:
         return ', '.join(map(str, self.details))
 
+
+
 motor1_5 = Motor("motor 1.5")
-koleso = Wheels("wheels 17")        
+koleso = Wheels("wheels 17")
 tavria = Auto()
 tavria.add_detail(motor1_5)
 tavria.add_detail(koleso)
 
-print(tavria) # str - method
+print(tavria)  # str - method
 
 print(repr(tavria))
 
 print(tavria.details[0])
 print(tavria.details[1])
 
-# # class SomeObject():
-# #     def __init__(self, def_name):
-# #         self.defined_name = def_name
-# #         globals()[def_name] = self
-
-# # SomeObject("ThisObject")
-# # print(ThisObject.defined_name)
