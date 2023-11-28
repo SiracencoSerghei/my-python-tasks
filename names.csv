@@ -1,0 +1,4 @@
+first_name,last_name,test,bool,adrress,age
+	Tony,Stark,,,,35
+Bob,Smith,,,,15
+Alexsa,Smith,,True,,45
