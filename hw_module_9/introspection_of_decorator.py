@@ -68,7 +68,7 @@ about it."""
 
 #  ex_2 with @functools
 
-import functoolsw
+import functools
 
 
 def my_decorator(func):

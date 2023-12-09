@@ -16,3 +16,11 @@ def mult(x, y):
 
 result1 = mult(5, 5)
 print(result1)
+
+
+import functools
+def f(a,b,c,d):
+    print("{} {} {} {}".format(a,b,c,d))
+f_new = functools.partial(f, b='you', c='beautiful', d='world')
+print(f_new('Hello '))
+print(f_new('Bye, '))

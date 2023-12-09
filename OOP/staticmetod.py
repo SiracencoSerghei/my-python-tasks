@@ -64,7 +64,12 @@ class Account:
 
 # ======= executing  ==========
 
-jr = Account.junior_account("Ethan Peters", 436574, 67)
+# jr = Account.junior_account("Ethan Peters", 436574, 67)
+
+jr = Account("Ethan Peters", 436574, 67)
+
+jr.junior_account("Ethan Peters", 436574, 97) # have not error, but don't change max_daily_turnover and account_balance
+
 jr.show()
 jr.deposit(20)
 jr.show()
