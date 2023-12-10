@@ -31,6 +31,7 @@ print('with OS: ', os.path.abspath('.'))
 print('with pathlib: ', pathlib.Path('.').absolute())
 
 # methods to work with file:
+
 # Get the full path to the current script or module
 script_path = __file__
 print('script path: ', script_path)
@@ -58,6 +59,23 @@ file_methods = [m for m in dir(file_path) if not m.startswith('_')]
 
 
 # ==================================
+
+print(pathlib.Path.cwd())
+
+# create path
+
+print(pathlib.Path('usr').joinpath('local').joinpath('bin'))
+print(pathlib.Path('usr') / 'local' / 'bin')
+
+# ======================================
+# list current directory
+current_iterdir = pathlib.Path('.').iterdir() # generator of directory list
+print(current_iterdir)
+for f in current_iterdir:
+    print(f)
+    
+# ======================================
+
 
 
 
