@@ -48,14 +48,34 @@ import re
 #     if not words:
 #         return []
 #     print(words)
-#     counter = Counter(words)
-#     top_three_words = [word[0] for word in counter.most_common(3)]
+#     top_three_words = [word[0] for word in Counter(words).most_common(3)]
 #     return top_three_words
 
+# def top_3_words(text):
+#     words = re.findall(r"[a-z0-9']*[a-z0-9]+[a-z0-9']*", text.lower())
+#     top_3 = Counter(words).most_common(3)
+#     return [tup[0] for tup in top_3]
+
+import sys
+
+
+# def top_3_words(text):
+#     search_pattern = r"[a-z0-9']*[a-z0-9]+[a-z0-9']*"
+#     wordss = re.findall(search_pattern, text.lower())
+#     print("size of list: ", sys.getsizeof(wordss))
+#     words = (word for word in re.findall(search_pattern, text.lower()))
+#     print("size of first generator: ", sys.getsizeof(words))
+#     tops_3 = Counter(wordss).most_common(3)
+#     print("size of 2d list: ", sys.getsizeof(tops_3))
+#     top_3 = (tup[0] for tup in Counter(words).most_common(3))
+#     print("size of second generator: ", sys.getsizeof(top_3))
+#
+#     return list(top_3)
+
 def top_3_words(text):
-    words = re.findall(r"[a-z0-9']*[a-z0-9]+[a-z0-9']*", text.lower())
-    top_3 = Counter(words).most_common(3)
-    return [tup[0] for tup in top_3]
+    c = Counter(re.findall(r"[a-z']+", re.sub(r" '+ ", " ", text.lower())))
+    return [w for w, _ in c.most_common(3)]
+
 
 text = """In a ''vil''lage'' of La Mancha, the name of which I have no desire to call to
 mind, there lived not long since one of those gentlemen that keep a lance
@@ -65,4 +85,3 @@ nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra
 on Sundays, made away with ''three''-quarters'' of his '*'income/?.  """
 print(top_3_words(text))
 # Output: ["a", "of", "on"]
-
